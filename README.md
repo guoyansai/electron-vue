@@ -1,5 +1,5 @@
-# electron-vue-template
-electron-vue-template，electron+vue+webpack，for client and web.  
+# electron-vue
+这是一个electron-vue初始化项目（含webpack），用来节约搭建时间。
 `npm i`  
 ###### run electron
 `npm start`  
