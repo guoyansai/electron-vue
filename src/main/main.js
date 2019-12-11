@@ -6,10 +6,9 @@ function createWindow() {
         width: 800,
         height: 600
     });
-    // 获取index.html的file协议路径
-    const indexPath = url.pathToFileURL(path.join(__dirname, 'index.html')).href;
-    // 如果路径或者参数中含有中文，需要对路径进行编码处理
-    win.loadURL(encodeURI(indexPath));
+    
+    win.loadURL('http://localhost:909/');
+    
     // 打开开发者工具
     win.webContents.openDevTools();
     // 监听窗口的关闭事件，释放窗口对象

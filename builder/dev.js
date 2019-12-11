@@ -13,7 +13,7 @@ function devRender() {
         compiler, {
             contentBase: webpackDevConfig.output.path,
             publicPath: webpackDevConfig.output.publicPath,
-            open: true,//打开默认浏览器
+            open: false,//打开默认浏览器
             inline: true,//刷新模式
             hot: true,//热更新
             quiet: true,//除第一次编译外，其余不显示编译信息
@@ -30,9 +30,9 @@ function devRender() {
                 });
             }
         }
-    ).listen(8099, function(err) {
+    ).listen(909, function(err) {
         if (err) return console.log(err);
-        console.log(`Listening at http://localhost:8099`);
+        console.log(`Listening at http://localhost:909`);
     });
     compiler.hooks.done.tap('doneCallback', (stats) => {
         const compilation = stats.compilation;
@@ -44,7 +44,7 @@ function devRender() {
 }
 
 function getHtml(res) {
-    http.get(`http://localhost:8099`, (response) => {
+    http.get(`http://localhost:909`, (response) => {
         response.pipe(res);
     }).on('error', (err) => {
         console.log(err);
