@@ -27,7 +27,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/render/index.ejs',
             filename: './index.html',
-            title: 'electron-vue-template',
+            title: 'electron-vue',
             inject: false,
             hash: true,
             mode: devMode
