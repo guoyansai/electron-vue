@@ -11,11 +11,3 @@
 
 ###### 一次运行两个命令
 `npm insatll -g concurrently`
-
-###### 懒人专用
-```
-vue init simulatedgreg/electron-vue my-project
-cd my-project
-npm install
-npm run dev
-```
