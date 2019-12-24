@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "electron ./src/main/main.js",
-    "devw": "node ./builder/dev.js",
-    "dev": "concurrently \"node ./builder/dev.js\" \"electron ./src/main/main.js\"",
-    "build": "node ./builder/build.js"
+    "dev": "node ./builder/dev.js",
+    "build": "node ./builder/buildrender.js"
   },
   "author": "AsaiStudio & 909.pub",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "babel-loader": "^8.0.6",
     "chalk": "^2.4.2",
     "css-loader": "^0.28.11",
     "electron": "^6.1.2",
@@ -33,5 +34,8 @@
     "webpack": "^4.41.2",
     "webpack-dev-server": "^3.10.1",
     "webpack-hot-middleware": "^2.25.0"
+  },
+  "dependencies": {
+    "babel-loader": "^8.0.6"
   }
 }

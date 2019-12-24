@@ -21,13 +21,14 @@ function routesToMenu() {
         }
         mykeya = mykeya + 1;
     }
+    console.log(666.123,routers)
     return mymenu;
 };
 let menu = routesToMenu();
 Vue.prototype.MENU = menu;
 Vue.use(VueRouter);
 let router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
     routes: routers
 })
 

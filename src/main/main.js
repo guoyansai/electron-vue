@@ -1,14 +1,15 @@
 const url = require('url');
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
+let win;
 function createWindow() {
-    let win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 800,
         height: 600
     });
-    
+
     win.loadURL('http://localhost:909/');
-    
+
     // 打开开发者工具
     win.webContents.openDevTools();
     // 监听窗口的关闭事件，释放窗口对象
