@@ -1,12 +1,15 @@
 module.exports = [
-    path('/', 'index', '首页', '', { redirect: '/home.html' }, [
+    path('/', 'index', '首页', '','', { redirect: '/home.html' }, [
         path('/home.html', 'home', '主页'),
-        path('/test.html', 'test', '测试页'),
+        path('/test/', 'test', '测试页','','','',[
+            path('a1.html', 'a1', '测试A1'),
+            path('a2.html', 'a2', '测试A2'),
+        ]),
     ]),
-    path('*', 'redirect', '跳转页', '', { redirect: '/' }),
+    path('*', 'redirect', '跳转页', '','', { redirect: '/' }),
 ];
 //path(path定义路由路径, name挂在文件路径, title页面title, views = [router-view,router-view1], other = {redirect:'/home/index'}路由其他参数, children = []嵌套路由配置)
-function path(path, name, title, views = [], other = {}, children = []) {
+function path(path, name, title, des, views = [], other = {}, children = []) {
     let viewobj;
     if (views.length) {
         viewobj = { default: (resolve) => require(['../views/' + views[0] + '.vue'], resolve) };
@@ -19,6 +22,7 @@ function path(path, name, title, views = [], other = {}, children = []) {
         name: name,
         meta: {
             title: title,
+            des: des,
         },
         components: viewobj,
         children: children,

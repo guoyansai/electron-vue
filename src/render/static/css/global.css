@@ -1,0 +1,13 @@
+
+.index{
+    display: flex;
+}
+.index-menu{
+    min-width:88px;
+}
+.index-main{
+    flex-grow: 1;
+}
+.index-other{
+    min-width:180px;
+}
