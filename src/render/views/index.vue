@@ -3,12 +3,20 @@
   <div class="index">
     <div class="index-menu">
       {{$router.name}}
-      <div v-for="(item,index) in MENU" :key="index" :class="$route.path.includes(item.path)?'active':''">
+      <div
+        v-for="(item,index) in MENU"
+        :key="index"
+        :class="$route.path.includes(item.path)?'active':''"
+      >
         <router-link :to="item.path">{{item.title}}</router-link>
         <div v-if="$route.path.includes(item.path)&&item.children.length">
-        <div v-for="(itema,index) in item.children" :key="index" :class="$route.path.includes(itema.path)?'active':''">
-          <router-link :to="itema.path">{{itema.title}}</router-link>
-        </div>
+          <div
+            v-for="(itema,index) in item.children"
+            :key="index"
+            :class="$route.path.includes(itema.path)?'active':''"
+          >
+            <router-link :to="itema.path">{{itema.title}}</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -21,14 +29,39 @@
 <script>
 export default {
   mounted() {
-    console.log(666.123, this.$route, this.$routes);
-    console.log(this.MENU);
+    // console.log(666.123, this.$route, this.$routes);
+    // console.log(this.MENU);
   }
 };
 </script>
 <style lang="scss" scoped>
-.active>div{font-weight: normal;}
-.active,.active>div.active{
-    font-weight: bold;
+.active > div {
+  font-weight: normal;
+}
+.active,
+.active > div.active {
+  font-weight: bold;
+  background-color: var(--colorb2);
+}
+.index-menu > div {
+  padding: 5px 12px;
+}
+.index-menu > .active {
+  position: relative;
+  z-index: 8;
+  > div {
+    position: absolute;
+    z-index: 11;
+    top: -50%;
+    left: 100%;
+    width: 100%;
+    border-top: 2px solid var(--colorb1);
+    border-right: 2px solid var(--colorb1);
+    border-bottom: 2px solid var(--colorb1);
+    > div {
+      padding: 5px 12px;
+      background-color: var(--colorb2);
+    }
+  }
 }
 </style>

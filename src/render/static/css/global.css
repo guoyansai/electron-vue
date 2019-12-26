@@ -1,31 +1,44 @@
+:root {
+    --colorb: #055ac9;
+    --colorb1: #3b8cf5;
+    --colorb2: #6da7f3;
+    --colorb3: #a3c6f5;
+    --colorf: #f7f9fc;
+    --colorf1: #ecf2fa;
+}
 
-body{
+body {
     margin: 0px;
     padding: 0px;
 }
-.index{
+
+.index {
     display: flex;
     width: 100%;
     height: 100vh;
 }
-.index-menu{
-    min-width:88px;
-    background-color: #D8D8D8;
+
+.index-menu {
+    min-width: 88px;
+    background-color: var(--colorb1);
 }
-.index-main{
+
+.index-main {
     flex-grow: 1;
 }
 
-.main{
+.main {
     display: flex;
     width: 100%;
     height: 100vh;
 }
-.main-show{
+
+.main-show {
     flex-grow: 1;
-    background-color: #F5F5F5;
+    background-color: var(--colorb2);
 }
-.main-other{
-    min-width:180px;
-    background-color: #E5E5E5;
+
+.main-other {
+    min-width: 180px;
+    background-color: var(--colorb3);
 }
