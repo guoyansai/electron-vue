@@ -8,8 +8,10 @@
         :key="index"
         :class="$route.path.includes(item.path)?'active':''"
       >
-        <router-link :to="item.path">{{item.title}}</router-link>
         <div v-if="$route.path.includes(item.path)&&item.children.length">
+          <div class="bigmenu">
+            <router-link :to="item.path">{{item.title}} ∨</router-link>
+          </div>
           <div
             v-for="(itema,index) in item.children"
             :key="index"
@@ -17,6 +19,9 @@
           >
             <router-link :to="itema.path">{{itema.title}}</router-link>
           </div>
+        </div>
+        <div class="bigmenu" v-else>
+          <router-link :to="item.path">{{item.title}}</router-link>
         </div>
       </div>
     </div>
@@ -35,32 +40,35 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.bigmenu {
+  padding: 5px 12px;
+}
+
 .active > div {
   font-weight: normal;
 }
 .active,
 .active > div.active {
   font-weight: bold;
-  background-color: var(--colorb2);
+  background-color: var(--colorb3);
+  > a {
+    color: var(--colorb);
+  }
 }
-.index-menu > div {
-  padding: 5px 12px;
+.active > .bigmenu {
+  font-weight: bold;
+  background-color: var(--colorb3);
+  > a {
+    color: var(--colorb);
+  }
 }
+
 .index-menu > .active {
-  position: relative;
-  z-index: 8;
+  background-color: var(--colorb2);
   > div {
-    position: absolute;
-    z-index: 11;
-    top: -50%;
-    left: 100%;
     width: 100%;
-    border-top: 2px solid var(--colorb1);
-    border-right: 2px solid var(--colorb1);
-    border-bottom: 2px solid var(--colorb1);
     > div {
       padding: 5px 12px;
-      background-color: var(--colorb2);
     }
   }
 }

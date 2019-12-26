@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="home">
     <h1>electron-vue</h1>
     <h2>name:{{userInfo.name}}</h2>
     <h2>address:{{userInfo.address}}</h2>
@@ -34,4 +34,8 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+.home {
+  
+}
+</style>

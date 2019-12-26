@@ -2,14 +2,21 @@
     --colorb: #055ac9;
     --colorb1: #3b8cf5;
     --colorb2: #6da7f3;
-    --colorb3: #a3c6f5;
+    --colorb3: #8cb9f3;
+    --colorb4: #a3c6f5;
     --colorf: #f7f9fc;
     --colorf1: #ecf2fa;
+}
+
+a {
+    text-decoration: none;
+    color: var(--colorf);
 }
 
 body {
     margin: 0px;
     padding: 0px;
+    color: var(--colorf);
 }
 
 .index {
@@ -19,12 +26,9 @@ body {
 }
 
 .index-menu {
-    min-width: 88px;
+    min-width: 99px;
+    /* width: 10%; */
     background-color: var(--colorb1);
-}
-
-.index-main {
-    flex-grow: 1;
 }
 
 .main {
@@ -33,12 +37,14 @@ body {
     height: 100vh;
 }
 
+.index-main,
 .main-show {
     flex-grow: 1;
-    background-color: var(--colorb2);
+    background-color: var(--colorb3);
 }
 
 .main-other {
     min-width: 180px;
-    background-color: var(--colorb3);
+    width: 20%;
+    background-color: var(--colorb4);
 }
