@@ -5,6 +5,26 @@ module.exports = [
             path('a1.html', 'test/a1', '测试A1'),
             path('a2.html', 'test/a2', '测试A2'),
         ]),
+        path('/test/', 'test', '测试分类', '', { redirect: '/test/a1.html' }, [
+            path('a1.html', 'test/a1', '测试A1'),
+            path('a2.html', 'test/a2', '测试A2'),
+        ]),
+        path('/test/', 'test', '测试分类', '', { redirect: '/test/a1.html' }, [
+            path('a1.html', 'test/a1', '测试A1'),
+            path('a2.html', 'test/a2', '测试A2'),
+        ]),
+        path('/test/', 'test', '测试分类', '', { redirect: '/test/a1.html' }, [
+            path('a1.html', 'test/a1', '测试A1'),
+            path('a2.html', 'test/a2', '测试A2'),
+        ]),
+        path('/test/', 'test', '测试分类', '', { redirect: '/test/a1.html' }, [
+            path('a1.html', 'test/a1', '测试A1'),
+            path('a2.html', 'test/a2', '测试A2'),
+        ]),
+        path('/test/', 'test', '测试分类', '', { redirect: '/test/a1.html' }, [
+            path('a1.html', 'test/a1', '测试A1'),
+            path('a2.html', 'test/a2', '测试A2'),
+        ]),
     ]),
     path('*', 'redirect', '跳转页', '', { redirect: '/' }),
 ];
