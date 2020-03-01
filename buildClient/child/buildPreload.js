@@ -1,26 +1,18 @@
-// 打包
-process.env.NODE_ENV = 'production';
+/**
+* Tip:    打包预加载js
+* Author: haoluo
+* Data:   2020-02-29
+**/
 const chalk = require("chalk");
-const del = require("del");
 const webpack = require('webpack');
-const renderConfig = require('./webpack.render.config.js');
-
-del(["./app/*"]); //删除历史打包数据
-
-viewBuilder().then(data => {
-    console.log("打包输出===>", data)
-}).catch(err => {
-    console.error("打包出错，输出===>", err);
-    process.exit(1);
-});
-
-function viewBuilder() {
+const preloadRenderConfig = require('../webpack.preload.config.js');
+function buildPreload(){
     return new Promise((resolve, reject) => {
-        console.log("打包渲染进程......");
-        const renderCompiler = webpack(renderConfig);
-        renderCompiler.run((err, stats) => {
+        console.log("打包预加载文件......");
+        const preloadRenderCompiler = webpack(preloadRenderConfig);
+        preloadRenderCompiler.run((err, stats) => {
             if (err) {
-                console.log("打包渲染进程遇到Error！");
+                console.log("打包预加载文件遇到Error！");
                 reject(chalk.red(err));
             } else {
                 let log = "";
@@ -34,8 +26,12 @@ function viewBuilder() {
                     log += chalk.blue(key) + "\n";
                 })
                 log += chalk.green(`time：${(stats.endTime-stats.startTime)/1000} s\n`) + "\n";
-                resolve(`${log}`);
+                console.log("打包预加载文件完毕！");
+                resolve(log);
             }
         })
     })
+}
+module.exports={
+    buildPreload
 }

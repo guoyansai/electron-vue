@@ -1,3 +1,8 @@
+/**
+* Tip:    主进程打包配置
+* Author: haoluo
+* Data:   2019-12-23
+**/
 const path=require('path');
 const webpack = require('webpack');
 const { dependencies } = require('../package.json');
@@ -19,20 +24,15 @@ module.exports = {
         runtimeChunk: false,
         minimize: true
     },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
-            }
-        ]
-    },
     externals: [
         ...Object.keys(dependencies || {})
     ],
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js', '.json', '.vue'],
+        alias: {
+            '@': path.resolve(__dirname, "../src"),
+            '@config': path.resolve(__dirname, "../config")
+        }
     },
     plugins:[
         new webpack.NoEmitOnErrorsPlugin(),

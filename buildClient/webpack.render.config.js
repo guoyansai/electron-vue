@@ -1,4 +1,8 @@
-// 渲染进程配置
+/*
+Name:    渲染进程配置
+Author: haoluo
+Date:   2019-10-30
+ */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -17,13 +21,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.scss$/,
+                test: /\.vue$/,
+                exclude: /node_modules/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.less$/,
                 use: [{
                     loader: "style-loader"
                 }, {
                     loader: "css-loader"
                 }, {
-                    loader: "sass-loader"
+                    loader: "less-loader"
                 }]
             },
             {
@@ -34,22 +43,25 @@ module.exports = {
                     loader: "css-loader"
                 }]
             },
-            {
-                test: /\.vue$/,
-                exclude: /node_modules/,
-                loader: 'vue-loader'
-            }
         ]
+    },
+    resolve: {
+        extensions: ['.js', '.json', '.vue'],
+        alias: {
+            '@': path.resolve(__dirname, "../src"),
+            '@config': path.resolve(__dirname, "../config")
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/render/index.ejs',
             filename: './index.html',
-            title: 'electron-vue',
+            title: 'electron-vue-template',
             inject: false,
             hash: true,
             mode: devMode
         }),
         new VueLoaderPlugin()
-    ]
+    ],
+    target: 'electron-renderer'
 }

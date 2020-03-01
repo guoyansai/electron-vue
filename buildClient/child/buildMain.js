@@ -1,4 +1,10 @@
-const mainWebpackConfig = require('./webpack.main.config.js');
+/**
+* Tip:    打包主进程
+* Author: haoluo
+* Data:   2019-12-23
+**/
+
+const mainWebpackConfig = require('../webpack.main.config.js');
 const webpack = require('webpack');
 const chalk = require('chalk');
 const del = require('del');

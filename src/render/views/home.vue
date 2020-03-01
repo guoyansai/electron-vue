@@ -34,8 +34,5 @@ export default {
   }
 };
 </script>
-<style>
-.home {
-  
-}
+<style lang="less" scoped>
 </style>

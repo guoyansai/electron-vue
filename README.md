@@ -1,6 +1,5 @@
-# electron-vue
-这是一个electron-vue初始化项目（含webpack），用来节约搭建时间。  
-
+# electron-vue-template
+electron-vue-template，electron+vue+webpack，for client and web.  
 `npm i`  
 ###### run electron
 `npm start`  
@@ -8,8 +7,3 @@
 `npm run dev`
 ###### build vue
 `npm run build`
-
-###### 一次运行两个命令
-`npm insatll -g concurrently`
-
-* 参考：https://www.cnblogs.com/kakayang/p/12084993.html

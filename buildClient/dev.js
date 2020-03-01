@@ -1,14 +1,25 @@
+/**
+* Tip:    调试渲染进程
+* Author: haoluo
+* Data:   2019-10-30
+**/
 process.env.NODE_ENV = 'development';//开发模式
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
 const http = require('http');
+const repl = require('repl');
 const { spawn } = require('child_process');
 const electron = require('electron');
 const path = require('path');
-const { buildMain } = require('./buildMain.js');
-const testurl='http://localhost:909';
+const { buildMain } = require('./child/buildMain.js');
+const { buildPreload } = require('./child/buildPreload.js');
+const { buildUpdate } = require('./child/buildUpdate.js');
+const devServerConfig = require('../config/devServerConfig.js');
+
+const url = devServerConfig.url;
+const port = devServerConfig.port;
 
 // 构建渲染进程
 function devRender() {
@@ -36,9 +47,9 @@ function devRender() {
                 });
             }
         }
-    ).listen(909, function(err) {
+    ).listen(port, function(err) {
         if (err) return console.log(err);
-        console.log(`Listening at ${testurl}`);
+        console.log(`Listening at http://${url}:${port}`);
     });
     compiler.hooks.done.tap('doneCallback', (stats) => {
         const compilation = stats.compilation;
@@ -46,7 +57,6 @@ function devRender() {
         compilation.warnings.forEach(key => console.log(chalk.yellow(key)));
         compilation.errors.forEach(key => console.log(chalk.red(`${key}:${stats.compilation.errors[key]}`)));
         console.log(chalk.green(`${chalk.white('渲染进程调试完毕\n')}time:${(stats.endTime-stats.startTime)/1000} s`));
-        console.log(chalk.green(`${chalk.white('\n\n您可以点击下面链接访问：\n')} ${testurl}`));
     });
 }
 
@@ -60,6 +70,37 @@ function startElectron() {
     electronProcess.stderr.on('data', data => {
         // 错误信息为红色
         electronLog(data, 'red');
+    });
+    // 监听关闭，并调出交互模块，快捷重启
+    electronProcess.on('close', () => {
+        callRepl("Electron Closed");
+    });
+}
+
+//调出交互模块
+function callRepl(tipText) {
+    var tip = `${tipText}，reStart?(${chalk.green("Y")}/n)`;
+    const r = repl.start({
+        prompt: tip,
+        eval: (cmd, context, filename, callback) => {
+            if (cmd === "" || cmd === "\n" || cmd === "Y\n" || cmd === "y\n") {
+                console.log("\n重新进行调试...");
+                r.close();
+                reBuildApp();
+            } else {
+                process.exit();
+            }
+            callback(null);
+        }
+    });
+}
+
+// 重启
+function reBuildApp() {
+    Promise.all([buildMain(), buildPreload()]).then(() => {
+        startElectron();
+    }).catch(err => {
+        callRepl(err);
     });
 }
 
@@ -79,7 +120,7 @@ function electronLog(data, color) {
 }
 
 function getHtml(res) {
-    http.get(testurl, (response) => {
+    http.get(`http://${url}:${port}`, (response) => {
         response.pipe(res);
     }).on('error', (err) => {
         console.log(err);
@@ -88,7 +129,7 @@ function getHtml(res) {
 
 // 构建
 function build() {
-    Promise.all([buildMain(), devRender()]).then(() => {
+    Promise.all([buildMain(), buildPreload(), buildUpdate(), devRender()]).then(() => {
         startElectron();
     }).catch(err => {
         console.log(err);

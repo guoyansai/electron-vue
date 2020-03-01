@@ -21,7 +21,10 @@
           </div>
         </div>
         <div class="bigmenu" v-else>
-          <router-link :to="item.path">{{item.title}}<span v-if="item.children.length"> ∧</span></router-link>
+          <router-link :to="item.path">
+            {{item.title}}
+            <span v-if="item.children.length">∧</span>
+          </router-link>
         </div>
       </div>
     </div>
@@ -39,8 +42,13 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.index-menu *{font-size: 12px;}
+<style lang="less" scoped>
+.index{
+  
+}
+.index-menu {
+  font-size: 12px;
+}
 .bigmenu {
   padding: 5px 12px;
 }
