@@ -1,8 +1,4 @@
-/**
-* Tip:    主进程打包配置
-* Author: haoluo
-* Data:   2019-12-23
-**/
+//主进程打包配置
 const path=require('path');
 const webpack = require('webpack');
 const { dependencies } = require('../package.json');

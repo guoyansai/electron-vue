@@ -1,8 +1,4 @@
-/**
-* Tip:    调试web端
-* Author: haoluo
-* Data:   2020-03-01
-**/
+//调试web端
 process.env.NODE_ENV = 'development';
 const os = require('os');
 const path = require('path');

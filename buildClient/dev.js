@@ -1,8 +1,4 @@
-/**
-* Tip:    调试渲染进程
-* Author: haoluo
-* Data:   2019-10-30
-**/
+//调试渲染进程
 process.env.NODE_ENV = 'development';//开发模式
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');

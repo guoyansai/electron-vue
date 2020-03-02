@@ -1,8 +1,4 @@
-/*
-Name:    渲染进程配置
-Author: haoluo
-Date:   2019-10-30
- */
+//渲染进程配置
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');

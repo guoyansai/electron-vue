@@ -1,8 +1,4 @@
-/**
-* Tip:    主进程
-* Author: haoluo
-* Data:   2020-02-25
-**/
+//主进程
 const {
     BrowserWindow,
     dialog
@@ -29,7 +25,7 @@ function createWindow() {
     let winW = electron.screen.getPrimaryDisplay().workAreaSize.width,
         winH = electron.screen.getPrimaryDisplay().workAreaSize.height;
     let config = {
-        title: "electron-vue-template",
+        title: "electron-vue",
         width: winW <= 1240 ? winW : 1240,
         height: winH <= 730 ? winH : 730,
         minWidth: winW <= 1240 ? winW : 1240,
@@ -52,7 +48,7 @@ function createWindow() {
             webSecurity: false,//禁用安全策略
             allowDisplayingInsecureContent: true,//允许一个使用 https的界面来展示由 http URLs 传过来的资源
             allowRunningInsecureContent: true, //允许一个 https 页面运行 http url 里的资源
-            preload: path.join(__dirname, 'preload.js'),//预加载js
+            // preload: path.join(__dirname, 'preload.js'),//预加载js
             nodeIntegration: true//5.x以上版本，默认无法在渲染进程引入node模块，需要这里设置为true
         }
     };

@@ -1,3 +1,4 @@
+//打包渲染进程
 const chalk = require("chalk");
 const webpack = require('webpack');
 const renderConfig = require('../webpack.render.config.js');

@@ -1,8 +1,4 @@
-/**
-* Tip:    打包web端
-* Author: haoluo
-* Data:   2020-03-01
-**/
+//打包web端
 process.env.NODE_ENV = 'production';
 const webpack = require('webpack');
 const chalk = require("chalk");

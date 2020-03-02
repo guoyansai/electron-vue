@@ -1,8 +1,4 @@
-/**
-* Tip:    打包
-* Author: haoluo
-* Data:   2019-10-30
-**/
+//打包
 process.env.NODE_ENV = 'production';
 const path = require('path');
 const fs = require('fs');

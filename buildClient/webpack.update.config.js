@@ -1,8 +1,4 @@
-/*
-Tip:    自动更新配置
-Author: haoluo
-Data:   2020-02-29
- */
+//自动更新配置
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
